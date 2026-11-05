@@ -5,11 +5,14 @@
 //  - `icon`  : nom d'une icône du composant AppIcon.vue
 //  - `careers` : les débouchés (titre, description, icône)
 //  - `sectors` : les secteurs qui recrutent
+//  - `exam`    : les épreuves du concours (matière + coefficient)
 // ============================================================================
 
 export const departments = [
   {
     slug: 'mathematiques',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Mathématiques', coef: 3 }, { subject: 'Physique', coef: 2 }],
     name: 'Mathématiques',
     family: 'Sciences exactes',
     icon: 'sigma',
@@ -31,6 +34,8 @@ export const departments = [
   },
   {
     slug: 'physique',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Mathématiques', coef: 2 }, { subject: 'Physique', coef: 3 }],
     name: 'Physique',
     family: 'Sciences exactes',
     icon: 'atom',
@@ -52,6 +57,8 @@ export const departments = [
   },
   {
     slug: 'chimie-sciences-naturelles',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Biologie animale', coef: 3 }, { subject: 'Biologie végétale', coef: 3 }, { subject: 'Chimie', coef: 3 }, { subject: 'Mathématiques', coef: 2 }, { subject: 'Physique', coef: 2 }],
     name: 'Chimie / Sciences naturelles',
     family: 'Sciences exactes',
     icon: 'flask',
@@ -73,6 +80,8 @@ export const departments = [
   },
   {
     slug: 'sciences-sociales',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Géographie', coef: 2 }, { subject: 'Histoire', coef: 2 }],
     name: 'Sciences sociales',
     family: 'Sciences humaines',
     icon: 'users',
@@ -94,6 +103,8 @@ export const departments = [
   },
   {
     slug: 'philosophie',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Dissertation philosophique', coef: 3 }, { subject: 'Étude de texte', coef: 2 }],
     name: 'Philosophie',
     family: 'Sciences humaines',
     icon: 'lightbulb',
@@ -115,6 +126,8 @@ export const departments = [
   },
   {
     slug: 'lettres-modernes',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Dissertation littéraire', coef: 3 }, { subject: 'Créole', coef: 2 }],
     name: 'Lettres modernes',
     family: 'Lettres & langues',
     icon: 'pen',
@@ -136,6 +149,8 @@ export const departments = [
   },
   {
     slug: 'langues-vivantes',
+    // Épreuves du concours d'admission (matière et coefficient)
+    exam: [{ subject: 'Anglais', coef: 2 }, { subject: 'Espagnol', coef: 2 }, { subject: 'Créole', coef: 1 }],
     name: 'Langues vivantes',
     family: 'Lettres & langues',
     icon: 'languages',

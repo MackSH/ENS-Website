@@ -21,6 +21,7 @@ const columns = [
     title: 'Étudier à l’ENS',
     links: [
       { to: '/admission#admission', label: 'Concours d’admission' },
+      { to: '/admission#epreuves', label: 'Épreuves et coefficients' },
       { to: '/debouches', label: 'Débouchés' },
       { to: '/admission#parcours', label: 'Prépa et licence' },
       { to: '/admission#calendrier', label: 'Calendrier académique' },

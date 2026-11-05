@@ -4,6 +4,8 @@ import site from '../data/site'
 import images from '../data/images'
 import PageHero from '../components/PageHero.vue'
 import AppIcon from '../components/AppIcon.vue'
+import ExamCard from '../components/ExamCard.vue'
+import departments from '../data/departments'
 
 const { url, admitted, waitlist } = site.admission
 const urlLabel = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
@@ -11,7 +13,7 @@ const urlLabel = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
 const steps = [
   { icon: 'compass', title: 'Choisissez votre entité', text: 'Comparez les 7 entités et leurs débouchés pour choisir le domaine qui correspond à votre projet.' },
   { icon: 'monitor', title: 'Inscrivez-vous en ligne', text: `L'inscription au concours se fait sur le portail d'admission de l'UEH : ${urlLabel}.` },
-  { icon: 'file-text', title: 'Passez le concours', text: 'Les candidats passent les épreuves du concours d’admission de l’ENS.' },
+  { icon: 'file-text', title: 'Passez le concours', text: 'Chaque entité a ses propres épreuves, avec des coefficients différents (voir ci-dessous).' },
   { icon: 'user-check', title: 'Consultez les résultats', text: `Dans chaque entité, ${admitted} candidats sont admis et ${waitlist} sont placés sur liste d'attente. Les résultats sont publiés dans les Actualités.` },
 ]
 
@@ -104,6 +106,26 @@ const openFaq = ref(0)
 
       <p class="center more" v-reveal>
         <RouterLink :to="{ path: '/actualites', query: { categorie: 'Admission' } }" class="link-arrow">Voir les annonces d'admission</RouterLink>
+      </p>
+    </div>
+  </section>
+
+  <!-- Épreuves du concours -->
+  <section id="epreuves" class="section">
+    <div class="container">
+      <p class="eyebrow center" v-reveal>Concours d'admission</p>
+      <h2 class="headline-lg center" v-reveal="60">Les épreuves, entité par entité.</h2>
+      <p class="lead center exams-lead" v-reveal="100">
+        Chaque entité a ses propres épreuves. Le coefficient indique le poids de chaque matière dans la note finale.
+      </p>
+      <div class="grid grid-3 exams">
+        <div v-for="(d, i) in departments" :key="d.slug" v-reveal="(i % 3) * 70">
+          <ExamCard :department="d" />
+        </div>
+      </div>
+      <p class="center small muted exams-note" v-reveal>
+        Programme des épreuves, dates et lieux : consultez les
+        <RouterLink :to="{ path: '/actualites', query: { categorie: 'Admission' } }">annonces d'admission</RouterLink>.
       </p>
     </div>
   </section>
@@ -267,6 +289,16 @@ const openFaq = ref(0)
 }
 .more {
   margin-top: 28px;
+}
+.exams-lead {
+  max-width: 680px;
+  margin: 12px auto 0;
+}
+.exams {
+  margin-top: 48px;
+}
+.exams-note {
+  margin-top: 32px;
 }
 
 .split {

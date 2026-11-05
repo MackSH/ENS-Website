@@ -4,6 +4,7 @@ import departments, { findDepartment } from '../data/departments'
 import images from '../data/images'
 import site from '../data/site'
 import AppIcon from '../components/AppIcon.vue'
+import ExamCard from '../components/ExamCard.vue'
 import NotFound from './NotFoundView.vue'
 
 const props = defineProps({ slug: String })
@@ -97,6 +98,10 @@ watchEffect(() => {
           L'admission se fait sur concours. Pour l'entité {{ d.name }}, {{ site.admission.admitted }} candidats sont admis et
           {{ site.admission.waitlist }} sont placés sur liste d'attente.
         </p>
+        <div class="exam-wrap" v-reveal="100">
+          <p class="exam-title">Épreuves du concours</p>
+          <ExamCard :department="d" dark :link="false" />
+        </div>
         <div class="cta-row" v-reveal="120">
           <a :href="site.admission.url" target="_blank" rel="noopener" class="btn">
             S'inscrire au concours <AppIcon name="external" :size="16" />
@@ -285,6 +290,18 @@ watchEffect(() => {
 .adm {
   max-width: 680px;
   margin: 16px auto 28px;
+}
+.exam-wrap {
+  max-width: 440px;
+  margin: 0 auto 36px;
+  text-align: left;
+}
+.exam-title {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a1a1a6;
+  margin-bottom: 12px;
 }
 .others {
   margin-top: 32px;

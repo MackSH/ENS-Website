@@ -10,7 +10,7 @@ Site vitrine de l'ENS (Vue 3 + Vite), au design inspiré d'apple.com, hébergé 
 | L'École | `/ecole` | Mission, valeurs, histoire, direction, organisation |
 | Entités | `/entites` | Les 7 entités, avec une page par entité (formation, débouchés) |
 | Débouchés | `/debouches` | Métiers et secteurs ouverts par chaque entité |
-| Admission & formation | `/admission` | Concours (inscription sur admission.ueh.edu.ht), prépa + L1–L3, calendrier, FAQ |
+| Admission & formation | `/admission` | Concours (inscription sur admission.ueh.edu.ht), épreuves et coefficients par entité, prépa + L1–L3, calendrier, FAQ |
 | Actualités | `/actualites` | Recherche, filtres par catégorie, agenda des événements |
 | Publier | `/publier` | Formulaire pour rédiger et publier une annonce |
 | Contact | `/contact` | Coordonnées, formulaire, carte |
@@ -20,7 +20,7 @@ Site vitrine de l'ENS (Vue 3 + Vite), au design inspiré d'apple.com, hébergé 
 Tous les textes se modifient directement sur GitHub (icône crayon sur chaque fichier) :
 
 - **`src/data/site.js`** — nom, adresse, téléphone, e-mail, réseaux sociaux, chiffres clés, direction, histoire, valeurs.
-- **`src/data/departments.js`** — les 7 entités (description, cours, compétences, débouchés).
+- **`src/data/departments.js`** — les 7 entités (description, cours, compétences, débouchés, épreuves du concours et coefficients).
 - **`src/data/images.js`** — toutes les photos du site. Les photos actuelles sont des illustrations libres de droits (Unsplash) à remplacer : déposez vos photos dans `public/images/` puis remplacez l'URL par `` `${base}images/ma-photo.jpg` ``.
 - Les textes des pages se trouvent dans `src/views/`.
 
