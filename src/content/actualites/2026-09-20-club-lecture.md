@@ -6,7 +6,7 @@ resume: Rejoignez le club de lecture de l'ENS — rencontres tous les jeudis apr
 image: library
 ---
 
-Le **club de lecture et de débat** de l'ENS accueille de nouveaux membres, quel que soit le département.
+Le **club de lecture et de débat** de l'ENS accueille de nouveaux membres, quelle que soit l’entité.
 
 Chaque jeudi à 15 h 00, les membres se retrouvent autour d'un livre — roman haïtien, essai, poésie — puis débattent. Le club organise aussi des rencontres avec des auteurs.
 

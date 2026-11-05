@@ -3,61 +3,80 @@ import { ref } from 'vue'
 import site from '../data/site'
 import images from '../data/images'
 import PageHero from '../components/PageHero.vue'
+import AppIcon from '../components/AppIcon.vue'
 
-// ⚠️ Contenus indicatifs — À VÉRIFIER et modifier selon le règlement de l'ENS.
+const { url, admitted, waitlist } = site.admission
+const urlLabel = url.replace(/^https?:\/\//, '').replace(/\/$/, '')
+
 const steps = [
-  { n: '1', title: 'Préparez votre dossier', text: 'Diplôme de fin d’études secondaires (Bac II), acte de naissance, pièce d’identité et photos.' },
-  { n: '2', title: 'Inscrivez-vous', text: 'Déposez votre dossier au secrétariat de l’ENS pendant la période d’inscription et choisissez votre département.' },
-  { n: '3', title: 'Passez le concours', text: 'Épreuves écrites de culture générale, de langue et de la discipline choisie, puis entretien éventuel.' },
-  { n: '4', title: 'Consultez les résultats', text: 'La liste des admis est publiée sur ce site, dans la rubrique Actualités, et affichée à l’École.' },
+  { icon: 'compass', title: 'Choisissez votre entité', text: 'Comparez les 7 entités et leurs débouchés pour choisir le domaine qui correspond à votre projet.' },
+  { icon: 'monitor', title: 'Inscrivez-vous en ligne', text: `L'inscription au concours se fait sur le portail d'admission de l'UEH : ${urlLabel}.` },
+  { icon: 'file-text', title: 'Passez le concours', text: 'Les candidats passent les épreuves du concours d’admission de l’ENS.' },
+  { icon: 'user-check', title: 'Consultez les résultats', text: `${admitted} candidats sont admis et ${waitlist} sont placés sur liste d'attente. Les résultats sont publiés dans les Actualités.` },
 ]
 
-const years = [
-  { y: '1re année', title: 'Fondamentaux', text: 'Bases de la discipline, méthodologie du travail universitaire, langues (créole, français), introduction aux sciences de l’éducation.' },
-  { y: '2e année', title: 'Approfondissement', text: 'Cours disciplinaires avancés, psychologie de l’enfant et de l’adolescent, initiation à la didactique.' },
-  { y: '3e année', title: 'Pédagogie', text: 'Didactique de la discipline, évaluation des apprentissages, observation de classes en lycée.' },
-  { y: '4e année', title: 'Pratique & mémoire', text: 'Stage d’enseignement encadré en établissement, séminaire de recherche et soutenance du mémoire de licence.' },
-]
-
+// Calendrier indicatif — À VÉRIFIER.
 const calendar = [
   { period: 'Octobre', label: 'Rentrée académique et accueil des nouveaux étudiants' },
-  { period: 'Novembre – janvier', label: 'Inscriptions au concours d’admission' },
   { period: 'Janvier – février', label: 'Examens du premier semestre' },
-  { period: 'Février', label: 'Concours d’admission' },
-  { period: 'Mars', label: 'Début du second semestre · Publication des admis' },
+  { period: 'Mars', label: 'Début du second semestre' },
   { period: 'Juin', label: 'Examens du second semestre' },
   { period: 'Juillet', label: 'Session de rattrapage · Soutenances de mémoires' },
-  { period: 'Août – septembre', label: 'Vacances universitaires' },
+  { period: 'Août – septembre', label: 'Vacances universitaires · Concours d’admission (voir les annonces)' },
 ]
 
 const life = [
-  { icon: '📚', title: 'Bibliothèque', text: 'Ouvrages de référence, manuels scolaires et mémoires des promotions précédentes.' },
-  { icon: '💻', title: 'Salle informatique', text: 'Accès à Internet et aux outils numériques pour préparer cours et recherches.' },
-  { icon: '🎭', title: 'Clubs & associations', text: 'Lecture, débat, théâtre, sciences, sport : la vie associative est riche.' },
-  { icon: '🗳️', title: 'Représentation étudiante', text: 'Des délégués élus portent la voix des étudiants au Conseil de l’École.' },
+  { icon: 'library', title: 'Bibliothèque', text: 'Ouvrages de référence et mémoires des promotions précédentes.' },
+  { icon: 'monitor', title: 'Salle informatique', text: 'Accès à Internet et aux outils numériques pour les cours et la recherche.' },
+  { icon: 'users', title: 'Clubs et associations', text: 'Lecture, débat, sciences, sport : une vie associative active.' },
+  { icon: 'vote', title: 'Représentation étudiante', text: 'Des délégués élus portent la voix des étudiants au Conseil de l’École.' },
 ]
 
 const faq = [
+  { q: 'Comment s’inscrire au concours ?', a: `L’inscription se fait en ligne sur le portail d’admission de l’Université d’État d’Haïti : ${url}. Les dates d’inscription et du concours sont annoncées dans la rubrique Actualités.` },
+  { q: 'Combien de candidats sont admis ?', a: `À l’issue du concours, ${admitted} candidats sont admis et ${waitlist} sont placés sur liste d’attente. Les candidats sur liste d’attente peuvent être appelés si des places se libèrent.` },
   { q: 'Qui peut se présenter au concours ?', a: 'Toute personne titulaire du diplôme de fin d’études secondaires (Bac II / Philo) ou d’un diplôme équivalent reconnu par le Ministère de l’Éducation nationale.' },
-  { q: 'Les études sont-elles payantes ?', a: 'L’ENS fait partie de l’université publique : les frais de scolarité sont modestes. Seuls des frais d’inscription et de dossier sont demandés. Les montants exacts sont communiqués chaque année dans l’annonce du concours.' },
-  { q: 'Peut-on changer de département ?', a: 'Un changement est possible en fin de première année, sur demande motivée et selon les places disponibles, après avis des deux chefs de département concernés.' },
-  { q: 'Les cours ont-ils lieu le matin ou l’après-midi ?', a: 'La plupart des cours ont lieu en journée, du lundi au vendredi. Les horaires détaillés sont affichés au secrétariat de chaque département au début de chaque semestre.' },
-  { q: 'Quel diplôme obtient-on ?', a: 'Une licence d’enseignement dans la discipline choisie, délivrée par l’Université d’État d’Haïti, qui permet d’enseigner au secondaire et de poursuivre en master.' },
-  { q: 'Où trouver les résultats et les annonces officielles ?', a: 'Toutes les annonces sont publiées dans la rubrique Actualités de ce site, que vous pouvez filtrer par catégorie (Admission, Résultats, Événements…).' },
+  { q: 'Combien de temps dure la formation ?', a: 'Quatre ans : une année préparatoire, qui consolide les notions apprises au secondaire, puis trois années de licence (L1, L2, L3).' },
+  { q: 'Faut-il vouloir devenir professeur pour entrer à l’ENS ?', a: 'Non. L’ENS forme des professionnels dans chacune de ses disciplines. L’enseignement est un débouché parmi d’autres : administration, ONG, entreprises, recherche, médias, organisations internationales… Consultez la page Débouchés.' },
+  { q: 'Où trouver les résultats et les annonces officielles ?', a: 'Toutes les annonces sont publiées dans la rubrique Actualités de ce site, filtrable par catégorie (Admission, Résultats, Événements…).' },
 ]
 const openFaq = ref(0)
 </script>
 
 <template>
   <PageHero
-    eyebrow="Admission & fonctionnement"
+    eyebrow="Admission & formation"
     title="Comment ça marche."
-    lead="Du concours d'entrée jusqu'au diplôme, voici tout ce qu'il faut savoir pour étudier à l'ENS."
+    lead="Un concours d'entrée, une année préparatoire et trois années de licence. Voici tout ce qu'il faut savoir pour rejoindre l'ENS."
     :image="images.amphitheater"
   >
-    <a href="#admission" class="btn">Postuler</a>
+    <a :href="url" target="_blank" rel="noopener" class="btn">S'inscrire au concours <AppIcon name="external" :size="16" /></a>
     <a href="#faq" class="btn btn-secondary">Questions fréquentes</a>
   </PageHero>
+
+  <!-- Chiffres du concours -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="key" v-reveal>
+        <div>
+          <strong>Concours</strong>
+          <span>Mode d'admission</span>
+        </div>
+        <div>
+          <strong>{{ admitted }}</strong>
+          <span>Candidats admis</span>
+        </div>
+        <div>
+          <strong>{{ waitlist }}</strong>
+          <span>Sur liste d'attente</span>
+        </div>
+        <div>
+          <strong>4 ans</strong>
+          <span>Prépa + licence</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Admission -->
   <section id="admission" class="section bg-alt">
@@ -65,16 +84,27 @@ const openFaq = ref(0)
       <p class="eyebrow center" v-reveal>Admission</p>
       <h2 class="headline-lg center" v-reveal="60">Quatre étapes pour nous rejoindre.</h2>
       <div class="grid grid-4 steps">
-        <div v-for="(s, i) in steps" :key="s.n" class="card step" v-reveal="i * 80">
-          <span class="num">{{ s.n }}</span>
+        <div v-for="(s, i) in steps" :key="s.title" class="card step" v-reveal="i * 80">
+          <div class="step-top">
+            <span class="ic"><AppIcon :name="s.icon" :size="24" /></span>
+            <span class="num">{{ i + 1 }}</span>
+          </div>
           <h3>{{ s.title }}</h3>
           <p class="muted">{{ s.text }}</p>
         </div>
       </div>
-      <div class="cta-row admission-cta" v-reveal>
-        <RouterLink :to="{ path: '/actualites', query: { categorie: 'Admission' } }" class="btn">Voir les annonces d'admission</RouterLink>
-        <a :href="`mailto:${site.contact.admissionsEmail}`" class="link-arrow">Écrire au service des admissions</a>
+
+      <div class="portal" v-reveal>
+        <div>
+          <h3 class="headline-sm">Portail d'admission de l'UEH</h3>
+          <p class="muted">Les inscriptions au concours se font exclusivement en ligne.</p>
+        </div>
+        <a :href="url" target="_blank" rel="noopener" class="btn">{{ urlLabel }} <AppIcon name="external" :size="16" /></a>
       </div>
+
+      <p class="center more" v-reveal>
+        <RouterLink :to="{ path: '/actualites', query: { categorie: 'Admission' } }" class="link-arrow">Voir les annonces d'admission</RouterLink>
+      </p>
     </div>
   </section>
 
@@ -84,17 +114,26 @@ const openFaq = ref(0)
       <div class="split">
         <div v-reveal>
           <p class="eyebrow">Parcours de formation</p>
-          <h2 class="headline-lg">Quatre ans pour devenir enseignant.</h2>
-          <p class="lead split-lead">Une licence qui unit maîtrise de la discipline et savoir-faire pédagogique.</p>
-          <img :src="images.boyStudying" alt="Un élève en classe" class="split-img" loading="lazy" />
+          <h2 class="headline-lg">Quatre ans pour devenir un professionnel.</h2>
+          <p class="lead split-lead">Une année préparatoire pour consolider les bases, puis trois années de licence pour se spécialiser.</p>
+          <img :src="images.studentsLaptop" alt="Des étudiants travaillent ensemble" class="split-img" loading="lazy" />
         </div>
         <ol class="years">
-          <li v-for="(y, i) in years" :key="y.y" v-reveal="i * 80">
-            <span class="y">{{ y.y }}</span>
-            <h3>{{ y.title }}</h3>
-            <p class="muted">{{ y.text }}</p>
+          <li v-for="(y, i) in site.program" :key="y.code" v-reveal="i * 80">
+            <span class="code" :class="{ prepa: i === 0 }">{{ y.code }}</span>
+            <div>
+              <h3>{{ y.title }}</h3>
+              <p class="muted">{{ y.text }}</p>
+            </div>
           </li>
         </ol>
+      </div>
+      <div class="after" v-reveal>
+        <AppIcon name="briefcase" :size="28" />
+        <p>
+          <strong>Et après ?</strong> La licence ouvre sur l'emploi dans de nombreux secteurs ou sur un master.
+          <RouterLink to="/debouches" class="link-arrow">Voir les débouchés</RouterLink>
+        </p>
       </div>
     </div>
   </section>
@@ -121,13 +160,10 @@ const openFaq = ref(0)
       <h2 class="headline-lg center" v-reveal="60">Apprendre, et bien plus.</h2>
       <div class="grid grid-4 life">
         <div v-for="(l, i) in life" :key="l.title" class="life-item" v-reveal="i * 80">
-          <span class="l-icon">{{ l.icon }}</span>
+          <span class="ic big"><AppIcon :name="l.icon" :size="28" /></span>
           <h3>{{ l.title }}</h3>
           <p class="muted">{{ l.text }}</p>
         </div>
-      </div>
-      <div class="life-photo" v-reveal>
-        <img :src="images.studentsLaptop" alt="Des étudiants travaillent ensemble" class="img-cover" loading="lazy" />
       </div>
     </div>
   </section>
@@ -153,22 +189,59 @@ const openFaq = ref(0)
 </template>
 
 <style scoped>
+.key {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+.key strong {
+  display: block;
+  font-size: clamp(30px, 4.5vw, 48px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+.key span {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+@media (max-width: 680px) {
+  .key {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 12px;
+  }
+}
 .steps {
   margin-top: 48px;
 }
 .step {
-  padding: 32px 26px;
+  padding: 28px 24px;
 }
-.num {
+.step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.ic {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--text);
-  color: #fff;
-  font-weight: 600;
-  margin-bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #e8f0fe;
+  color: var(--accent);
+}
+.ic.big {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px;
+  margin: 0 auto;
+}
+.num {
+  font-size: 34px;
+  font-weight: 700;
+  color: #d2d2d7;
 }
 .step h3 {
   font-size: 19px;
@@ -177,8 +250,23 @@ const openFaq = ref(0)
 .step p {
   font-size: 15px;
 }
-.admission-cta {
-  margin-top: 48px;
+.portal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 32px;
+  padding: 28px 32px;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.portal p {
+  margin-top: 4px;
+}
+.more {
+  margin-top: 28px;
 }
 
 .split {
@@ -202,21 +290,49 @@ const openFaq = ref(0)
   padding: 0;
 }
 .years li {
-  padding: 28px 0;
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 20px;
+  padding: 26px 0;
   border-top: 1px solid var(--hairline);
 }
 .years li:first-child {
   border-top: 0;
   padding-top: 0;
 }
-.y {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--haiti-red);
+.code {
+  display: grid;
+  place-items: center;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--bg-alt);
+  font-weight: 700;
+  font-size: 18px;
+}
+.code.prepa {
+  background: var(--text);
+  color: #fff;
+  font-size: 15px;
 }
 .years h3 {
-  font-size: 24px;
-  margin: 4px 0 8px;
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+.after {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 56px;
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  color: var(--accent);
+}
+.after p {
+  color: var(--text);
+}
+.after .link-arrow {
+  margin-left: 6px;
 }
 @media (max-width: 833px) {
   .split {
@@ -265,26 +381,12 @@ const openFaq = ref(0)
 .life-item {
   text-align: center;
 }
-.l-icon {
-  font-size: 40px;
-}
 .life-item h3 {
   font-size: 19px;
-  margin: 10px 0 6px;
+  margin: 14px 0 6px;
 }
 .life-item p {
   font-size: 15px;
-}
-.life-photo {
-  margin-top: 56px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 21 / 9;
-}
-@media (max-width: 680px) {
-  .life-photo {
-    aspect-ratio: 4 / 3;
-  }
 }
 
 .faq-wrap {
@@ -326,8 +428,5 @@ const openFaq = ref(0)
 .answer {
   padding: 0 26px 24px;
   color: var(--text-secondary);
-}
-.more {
-  margin-top: 28px;
 }
 </style>

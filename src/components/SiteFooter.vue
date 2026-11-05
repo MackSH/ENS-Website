@@ -14,17 +14,18 @@ const columns = [
     ],
   },
   {
-    title: 'Départements',
-    links: departments.slice(0, 6).map((d) => ({ to: `/departements/${d.slug}`, label: d.name })).concat({ to: '/departements', label: 'Tous les départements' }),
+    title: 'Entités',
+    links: departments.map((d) => ({ to: `/entites/${d.slug}`, label: d.name })).concat({ to: '/entites', label: 'Toutes les entités' }),
   },
   {
     title: 'Étudier à l’ENS',
     links: [
-      { to: '/fonctionnement#admission', label: 'Concours d’admission' },
-      { to: '/fonctionnement#parcours', label: 'Parcours de formation' },
-      { to: '/fonctionnement#calendrier', label: 'Calendrier académique' },
-      { to: '/fonctionnement#vie', label: 'Vie étudiante' },
-      { to: '/fonctionnement#faq', label: 'Questions fréquentes' },
+      { to: '/admission#admission', label: 'Concours d’admission' },
+      { to: '/debouches', label: 'Débouchés' },
+      { to: '/admission#parcours', label: 'Prépa et licence' },
+      { to: '/admission#calendrier', label: 'Calendrier académique' },
+      { to: '/admission#vie', label: 'Vie étudiante' },
+      { to: '/admission#faq', label: 'Questions fréquentes' },
     ],
   },
   {
@@ -62,6 +63,7 @@ const columns = [
             <li>{{ site.contact.address }}</li>
             <li><a :href="`tel:${site.contact.phone.replace(/\s/g, '')}`">{{ site.contact.phone }}</a></li>
             <li><a :href="`mailto:${site.contact.email}`">{{ site.contact.email }}</a></li>
+            <li><a :href="site.admission.url" target="_blank" rel="noopener">Portail d'admission UEH</a></li>
             <li v-for="s in site.social" :key="s.label"><a :href="s.url" target="_blank" rel="noopener">{{ s.label }}</a></li>
           </ul>
         </div>

@@ -4,6 +4,7 @@ import site from '../data/site'
 import images from '../data/images'
 import { CATEGORIES, toArticle, slugify } from '../lib/news'
 import NewsCard from '../components/NewsCard.vue'
+import AppIcon from '../components/AppIcon.vue'
 
 const today = new Date().toISOString().slice(0, 10)
 const form = reactive({
@@ -142,10 +143,10 @@ function download() {
             target="_blank"
             rel="noopener"
           >
-            Publier sur GitHub
+            Publier sur GitHub <AppIcon name="external" :size="16" />
           </a>
-          <button type="button" class="btn btn-secondary" @click="copy">{{ copied ? 'Copié ✓' : 'Copier le texte' }}</button>
-          <button type="button" class="btn btn-secondary" @click="download">Télécharger (.md)</button>
+          <button type="button" class="btn btn-secondary" @click="copy"><AppIcon :name="copied ? 'check' : 'copy'" :size="16" /> {{ copied ? 'Copié' : 'Copier le texte' }}</button>
+          <button type="button" class="btn btn-secondary" @click="download"><AppIcon name="download" :size="16" /> Télécharger (.md)</button>
         </div>
       </form>
 

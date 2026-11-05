@@ -5,6 +5,18 @@ import images from '../data/images'
 import departments from '../data/departments'
 import { articles, upcomingEvents, formatDate } from '../lib/news'
 import NewsCard from '../components/NewsCard.vue'
+import AppIcon from '../components/AppIcon.vue'
+
+const outcomes = [
+  { icon: 'landmark', label: 'Administration publique' },
+  { icon: 'heart', label: 'ONG et développement' },
+  { icon: 'globe', label: 'Organisations internationales' },
+  { icon: 'coins', label: 'Banque et entreprises' },
+  { icon: 'factory', label: 'Industrie et laboratoires' },
+  { icon: 'newspaper', label: 'Médias et culture' },
+  { icon: 'microscope', label: 'Recherche' },
+  { icon: 'graduation-cap', label: 'Enseignement' },
+]
 
 const latest = computed(() => articles.slice(0, 3))
 const events = computed(() => upcomingEvents().slice(0, 3))
@@ -28,23 +40,23 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
       <p class="hero-tag gradient-text" v-reveal="160">{{ site.tagline }}</p>
       <div class="cta-row" v-reveal="240">
         <RouterLink to="/ecole" class="btn">Découvrir l'École</RouterLink>
-        <RouterLink to="/departements" class="link-arrow">Voir les départements</RouterLink>
+        <RouterLink to="/entites" class="link-arrow">Voir les 7 entités</RouterLink>
       </div>
     </div>
     <div class="container-wide" v-reveal="300">
       <div class="hero-media">
-        <img :src="images.hero" alt="Une enseignante devant sa classe" class="img-cover" fetchpriority="high" />
+        <img :src="images.hero" alt="Une formatrice devant sa classe" class="img-cover" fetchpriority="high" />
       </div>
     </div>
   </section>
 
   <!-- TUILES 2 COLONNES (façon apple.com) -->
   <section class="tiles container-wide">
-    <RouterLink to="/fonctionnement" class="tile tile-dark" v-reveal>
+    <RouterLink to="/admission" class="tile tile-dark" v-reveal>
       <div class="tile-text">
         <p class="eyebrow on-dark">Admission</p>
         <h2 class="headline-md">Devenez normalien.</h2>
-        <p class="tile-lead">Concours, dossier, calendrier : tout pour rejoindre l'ENS.</p>
+        <p class="tile-lead">Admission sur concours, inscription en ligne : {{ site.admission.admitted }} places chaque année.</p>
         <span class="link-arrow">Comment postuler</span>
       </div>
       <img :src="images.graduation" alt="Des diplômés lancent leur toque" class="tile-img" loading="lazy" />
@@ -63,7 +75,7 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
   <!-- CHIFFRES -->
   <section class="section">
     <div class="container center">
-      <h2 class="headline-lg" v-reveal>Plus de 75 ans<br /><span class="muted">au service de l'école haïtienne.</span></h2>
+      <h2 class="headline-lg" v-reveal>Plus de 75 ans<br /><span class="muted">au service d'Haïti.</span></h2>
       <div class="stats" v-reveal="100">
         <div v-for="s in site.stats" :key="s.label" class="stat">
           <strong>{{ s.value }}</strong>
@@ -77,12 +89,12 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
   <section class="section bg-alt">
     <div class="container">
       <div class="section-head" v-reveal>
-        <h2 class="headline-lg">Explorez nos départements.</h2>
-        <RouterLink to="/departements" class="link-arrow">Tous les départements</RouterLink>
+        <h2 class="headline-lg">Explorez nos 7 entités.</h2>
+        <RouterLink to="/entites" class="link-arrow">Toutes les entités</RouterLink>
       </div>
     </div>
     <div class="gallery" v-reveal="100">
-      <RouterLink v-for="d in departments" :key="d.slug" :to="`/departements/${d.slug}`" class="g-card">
+      <RouterLink v-for="d in departments" :key="d.slug" :to="`/entites/${d.slug}`" class="g-card">
         <img :src="images[d.image]" :alt="''" loading="lazy" class="img-cover" />
         <div class="g-overlay">
           <span class="g-family">{{ d.family }}</span>
@@ -93,18 +105,40 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
     </div>
   </section>
 
+  <!-- DÉBOUCHÉS -->
+  <section class="section outcomes-sec">
+    <div class="container center">
+      <p class="eyebrow accent" v-reveal>Débouchés</p>
+      <h2 class="headline-lg" v-reveal="60">Bien plus que l'enseignement.</h2>
+      <p class="lead outcomes-lead" v-reveal="120">
+        Chaque entité forme des professionnels de son domaine. Voici où travaillent nos diplômés.
+      </p>
+      <div class="outcomes" v-reveal="160">
+        <div v-for="o in outcomes" :key="o.label" class="outcome">
+          <span class="o-ic"><AppIcon :name="o.icon" :size="26" /></span>
+          <span>{{ o.label }}</span>
+        </div>
+      </div>
+      <div class="cta-row" v-reveal>
+        <RouterLink to="/debouches" class="btn">Explorer les débouchés</RouterLink>
+        <RouterLink to="/entites" class="link-arrow">Comparer les entités</RouterLink>
+      </div>
+    </div>
+  </section>
+
   <!-- MISSION — section sombre -->
   <section class="section bg-dark mission">
     <div class="container">
       <div class="mission-grid">
         <div v-reveal>
           <p class="eyebrow on-dark">Notre mission</p>
-          <h2 class="headline-lg">Des enseignants d'excellence pour chaque salle de classe.</h2>
+          <h2 class="headline-lg">Former des professionnels dans chaque discipline.</h2>
           <p class="lead mission-lead">
-            L'ENS forme les professeurs de l'enseignement secondaire, les chercheurs en éducation et les cadres du système
-            éducatif haïtien. Une formation exigeante qui unit savoir disciplinaire et pratique pédagogique.
+            L'ENS forme, en quatre ans, des spécialistes en mathématiques, physique, chimie et sciences naturelles, sciences
+            sociales, philosophie, lettres et langues. Nos diplômés travaillent dans l'administration, les ONG, les entreprises,
+            la recherche, les médias ou l'enseignement.
           </p>
-          <RouterLink to="/ecole" class="link-arrow">Notre histoire et nos valeurs</RouterLink>
+          <RouterLink to="/debouches" class="link-arrow">Découvrir les débouchés</RouterLink>
         </div>
         <div class="mission-photos" v-reveal="120">
           <img :src="images.childrenWriting" alt="Des élèves écrivent en classe" loading="lazy" />
@@ -364,6 +398,44 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
 .g-overlay p {
   font-size: 15px;
   opacity: 0.9;
+}
+
+/* Débouchés */
+.outcomes-lead {
+  max-width: 640px;
+  margin: 14px auto 0;
+}
+.outcomes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 48px 0 40px;
+}
+.outcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 28px 12px;
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  font-size: 15px;
+  font-weight: 600;
+}
+.o-ic {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: #fff;
+  color: var(--accent);
+  box-shadow: var(--shadow);
+}
+@media (max-width: 680px) {
+  .outcomes {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Mission */

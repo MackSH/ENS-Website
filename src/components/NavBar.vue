@@ -4,8 +4,9 @@ import { useRoute } from 'vue-router'
 
 const links = [
   { to: '/ecole', label: "L'École" },
-  { to: '/departements', label: 'Départements' },
-  { to: '/fonctionnement', label: 'Admission' },
+  { to: '/entites', label: 'Entités' },
+  { to: '/debouches', label: 'Débouchés' },
+  { to: '/admission', label: 'Admission' },
   { to: '/actualites', label: 'Actualités' },
   { to: '/contact', label: 'Contact' },
 ]

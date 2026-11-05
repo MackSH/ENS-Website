@@ -129,7 +129,7 @@ textarea {
   background: var(--bg-dark);
   color: var(--text-on-dark);
 }
-.bg-dark a {
+.bg-dark a:not(.btn) {
   color: var(--link-on-dark);
 }
 

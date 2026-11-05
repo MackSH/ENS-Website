@@ -4,9 +4,14 @@ import Home from './views/HomeView.vue'
 const routes = [
   { path: '/', name: 'home', component: Home },
   { path: '/ecole', name: 'ecole', component: () => import('./views/AboutView.vue'), meta: { title: "L'École" } },
-  { path: '/departements', name: 'departements', component: () => import('./views/DepartmentsView.vue'), meta: { title: 'Départements' } },
-  { path: '/departements/:slug', name: 'departement', component: () => import('./views/DepartmentDetailView.vue'), props: true },
-  { path: '/fonctionnement', name: 'fonctionnement', component: () => import('./views/HowItWorksView.vue'), meta: { title: 'Admission & fonctionnement' } },
+  { path: '/entites', name: 'entites', component: () => import('./views/DepartmentsView.vue'), meta: { title: 'Entités' } },
+  { path: '/entites/:slug', name: 'entite', component: () => import('./views/DepartmentDetailView.vue'), props: true },
+  { path: '/debouches', name: 'debouches', component: () => import('./views/CareersView.vue'), meta: { title: 'Débouchés' } },
+  { path: '/admission', name: 'admission', component: () => import('./views/HowItWorksView.vue'), meta: { title: 'Admission & formation' } },
+  // Anciennes adresses
+  { path: '/departements', redirect: '/entites' },
+  { path: '/departements/:slug', redirect: (to) => `/entites/${to.params.slug}` },
+  { path: '/fonctionnement', redirect: (to) => ({ path: '/admission', hash: to.hash }) },
   { path: '/actualites', name: 'actualites', component: () => import('./views/NewsView.vue'), meta: { title: 'Actualités' } },
   { path: '/actualites/:slug', name: 'actualite', component: () => import('./views/NewsDetailView.vue'), props: true },
   { path: '/publier', name: 'publier', component: () => import('./views/PublishView.vue'), meta: { title: 'Publier une information' } },

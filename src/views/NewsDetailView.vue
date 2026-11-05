@@ -3,6 +3,7 @@ import { computed, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { articles, findArticle, formatDate } from '../lib/news'
 import NewsCard from '../components/NewsCard.vue'
+import AppIcon from '../components/AppIcon.vue'
 import NotFound from './NotFoundView.vue'
 
 const props = defineProps({ slug: String })
@@ -15,7 +16,7 @@ watchEffect(() => {
   if (a.value) document.title = `${a.value.title} · ENS`
 })
 
-// Les liens internes du Markdown (ex. /fonctionnement) passent par le routeur.
+// Les liens internes du Markdown (ex. /admission) passent par le routeur.
 function onClick(e) {
   const link = e.target.closest('a')
   const href = link?.getAttribute('href')
@@ -55,7 +56,7 @@ async function share() {
       <p class="lead">{{ a.summary }}</p>
       <div class="meta">
         <time :datetime="a.dateISO">Publié le {{ formatDate(a.date) }}</time>
-        <button class="btn btn-sm btn-secondary" @click="share">{{ copied ? 'Lien copié ✓' : 'Partager' }}</button>
+        <button class="btn btn-sm btn-secondary" @click="share"><AppIcon :name="copied ? 'check' : 'share'" :size="16" /> {{ copied ? 'Lien copié' : 'Partager' }}</button>
       </div>
     </header>
 
@@ -65,8 +66,8 @@ async function share() {
 
     <div class="container body-wrap">
       <aside v-if="a.eventDate" class="event-box">
-        <strong>📅 {{ formatDate(a.eventDate) }}</strong>
-        <span v-if="a.location">📍 {{ a.location }}</span>
+        <strong class="ev"><AppIcon name="calendar" :size="18" /> {{ formatDate(a.eventDate) }}</strong>
+        <span v-if="a.location" class="ev"><AppIcon name="map-pin" :size="18" /> {{ a.location }}</span>
       </aside>
       <!-- Contenu issu des fichiers Markdown du dépôt (source de confiance). -->
       <div class="prose" @click="onClick" v-html="a.html"></div>
@@ -131,6 +132,14 @@ async function share() {
   border-radius: var(--radius-sm);
   background: var(--bg-alt);
   margin-bottom: 32px;
+}
+.ev {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ev :deep(.icon) {
+  color: var(--accent);
 }
 .rel-grid {
   margin-top: 32px;

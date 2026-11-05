@@ -3,17 +3,18 @@ import { ref, computed } from 'vue'
 import departments, { families } from '../data/departments'
 import images from '../data/images'
 import PageHero from '../components/PageHero.vue'
+import AppIcon from '../components/AppIcon.vue'
 
-const active = ref('Tous')
-const filters = ['Tous', ...families]
-const list = computed(() => (active.value === 'Tous' ? departments : departments.filter((d) => d.family === active.value)))
+const active = ref('Toutes')
+const filters = ['Toutes', ...families]
+const list = computed(() => (active.value === 'Toutes' ? departments : departments.filter((d) => d.family === active.value)))
 </script>
 
 <template>
   <PageHero
-    eyebrow="Départements"
-    title="Une discipline. Une vocation."
-    lead="Lettres, langues, sciences humaines et sciences exactes : choisissez la matière que vous voulez enseigner."
+    eyebrow="Les 7 entités"
+    title="Choisissez votre domaine."
+    lead="Sciences exactes, sciences humaines, lettres et langues : sept entités qui forment des professionnels, avec des débouchés bien au-delà de l'enseignement."
   />
 
   <section class="section-sm filters-wrap">
@@ -36,15 +37,18 @@ const list = computed(() => (active.value === 'Tous' ? departments : departments
   <section class="section list-section">
     <div class="container">
       <TransitionGroup name="fade" tag="div" class="grid grid-2">
-        <RouterLink v-for="d in list" :key="d.slug" :to="`/departements/${d.slug}`" class="card dept">
+        <RouterLink v-for="d in list" :key="d.slug" :to="`/entites/${d.slug}`" class="card dept">
           <div class="dept-img">
             <img :src="images[d.image]" alt="" loading="lazy" class="img-cover" />
           </div>
           <div class="dept-body">
-            <span class="family">{{ d.icon }} {{ d.family }}</span>
+            <span class="family"><AppIcon :name="d.icon" :size="16" /> {{ d.family }}</span>
             <h2 class="headline-sm">{{ d.name }}</h2>
             <p class="muted">{{ d.short }}</p>
-            <span class="link-arrow">En savoir plus</span>
+            <ul class="mini-careers">
+              <li v-for="c in d.careers.slice(0, 3)" :key="c.title"><AppIcon name="arrow-right" :size="14" /> {{ c.title }}</li>
+            </ul>
+            <span class="link-arrow">Formation et débouchés</span>
           </div>
         </RouterLink>
       </TransitionGroup>
@@ -53,12 +57,15 @@ const list = computed(() => (active.value === 'Tous' ? departments : departments
 
   <section class="section bg-alt">
     <div class="container center">
-      <h2 class="headline-md" v-reveal>Un tronc commun pédagogique pour tous.</h2>
+      <h2 class="headline-md" v-reveal>Pas sûr de votre choix ?</h2>
       <p class="lead common" v-reveal="60">
-        Quel que soit leur département, les normaliens suivent des cours de psychopédagogie, de didactique, de
-        législation scolaire et effectuent un stage en établissement.
+        Comparez les métiers auxquels prépare chaque entité, puis découvrez comment se déroulent les 4 années de
+        formation : une année préparatoire et trois années de licence.
       </p>
-      <RouterLink to="/fonctionnement#parcours" class="link-arrow" v-reveal="120">Voir le parcours de formation</RouterLink>
+      <div class="cta-row" v-reveal="120">
+        <RouterLink to="/debouches" class="btn">Explorer les débouchés</RouterLink>
+        <RouterLink to="/admission#parcours" class="link-arrow">Voir le parcours de formation</RouterLink>
+      </div>
     </div>
   </section>
 </template>
@@ -103,7 +110,7 @@ const list = computed(() => (active.value === 'Tous' ? departments : departments
   grid-template-columns: 200px 1fr;
 }
 .dept-img {
-  min-height: 220px;
+  min-height: 240px;
 }
 .dept-body {
   padding: 28px;
@@ -112,9 +119,28 @@ const list = computed(() => (active.value === 'Tous' ? departments : departments
   gap: 8px;
 }
 .family {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
-  color: var(--text-tertiary);
+  color: var(--accent);
   font-weight: 600;
+}
+.mini-careers {
+  list-style: none;
+  margin: 4px 0 8px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--text);
+}
+.mini-careers li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0;
+}
+.mini-careers :deep(.icon) {
+  color: var(--text-tertiary);
 }
 .dept-body .link-arrow {
   margin-top: auto;
@@ -131,7 +157,7 @@ const list = computed(() => (active.value === 'Tous' ? departments : departments
 }
 .common {
   max-width: 720px;
-  margin: 16px auto 24px;
+  margin: 16px auto 28px;
 }
 .fade-enter-active,
 .fade-leave-active {

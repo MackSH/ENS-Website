@@ -2,6 +2,7 @@
 import { reactive, computed } from 'vue'
 import site from '../data/site'
 import PageHero from '../components/PageHero.vue'
+import AppIcon from '../components/AppIcon.vue'
 
 const form = reactive({ nom: '', email: '', sujet: 'Admission', message: '' })
 const subjects = ['Admission', 'Scolarité', 'Résultats', 'Partenariat', 'Presse', 'Autre']
@@ -21,21 +22,21 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.
   <section class="section-sm">
     <div class="container grid grid-3 infos">
       <div class="card info" v-reveal>
-        <span class="i">📍</span>
+        <span class="i"><AppIcon name="map-pin" /></span>
         <h2>Adresse</h2>
         <p class="muted">{{ site.contact.address }}</p>
       </div>
       <div class="card info" v-reveal="80">
-        <span class="i">📞</span>
+        <span class="i"><AppIcon name="phone" /></span>
         <h2>Téléphone</h2>
         <a :href="`tel:${site.contact.phone.replace(/\s/g, '')}`">{{ site.contact.phone }}</a>
         <p class="muted small">{{ site.contact.hours }}</p>
       </div>
       <div class="card info" v-reveal="160">
-        <span class="i">✉️</span>
+        <span class="i"><AppIcon name="mail" /></span>
         <h2>E-mail</h2>
         <a :href="`mailto:${site.contact.email}`">{{ site.contact.email }}</a>
-        <a :href="`mailto:${site.contact.admissionsEmail}`" class="small">{{ site.contact.admissionsEmail }}</a>
+        <a :href="site.admission.url" target="_blank" rel="noopener" class="small">Inscriptions : {{ site.admission.url.replace(/^https?:\/\//, '').replace(/\/$/, '') }}</a>
       </div>
     </div>
   </section>
@@ -84,7 +85,13 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.
   box-shadow: 0 0 0 1px var(--hairline);
 }
 .i {
-  font-size: 30px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: #e8f0fe;
+  color: var(--accent);
 }
 .info h2 {
   font-size: 19px;

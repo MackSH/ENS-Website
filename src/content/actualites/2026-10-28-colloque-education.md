@@ -14,7 +14,7 @@ L'ENS organise les **4 et 5 décembre 2026** un colloque consacré aux pratiques
 
 - Enseigner en créole et en français : quelles stratégies ?
 - Le numérique au service de la classe
-- Former les enseignants des zones rurales
+- Les diplômés de l’ENS hors de l’enseignement : parcours et témoignages
 - Table ronde avec d'anciens diplômés de l'ENS
 
 L'entrée est libre pour les étudiants de l'UEH, sur présentation de la carte d'étudiant.

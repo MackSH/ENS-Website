@@ -8,22 +8,23 @@ Site vitrine de l'ENS (Vue 3 + Vite), au design inspiré d'apple.com, hébergé 
 | --- | --- | --- |
 | Accueil | `/` | Présentation, chiffres clés, départements, actualités, agenda |
 | L'École | `/ecole` | Mission, valeurs, histoire, direction, organisation |
-| Départements | `/departements` | Liste filtrable + une page par département |
-| Admission & fonctionnement | `/fonctionnement` | Concours, parcours sur 4 ans, calendrier, vie étudiante, FAQ |
+| Entités | `/entites` | Les 7 entités, avec une page par entité (formation, débouchés) |
+| Débouchés | `/debouches` | Métiers et secteurs ouverts par chaque entité |
+| Admission & formation | `/admission` | Concours (inscription sur admission.ueh.edu.ht), prépa + L1–L3, calendrier, FAQ |
 | Actualités | `/actualites` | Recherche, filtres par catégorie, agenda des événements |
 | Publier | `/publier` | Formulaire pour rédiger et publier une annonce |
 | Contact | `/contact` | Coordonnées, formulaire, carte |
 
 ## Modifier le contenu (aucune compétence technique requise)
 
-Tous les textes se modifient directement sur GitHub (bouton ✏️ sur chaque fichier) :
+Tous les textes se modifient directement sur GitHub (icône crayon sur chaque fichier) :
 
 - **`src/data/site.js`** — nom, adresse, téléphone, e-mail, réseaux sociaux, chiffres clés, direction, histoire, valeurs.
-- **`src/data/departments.js`** — les départements (description, cours, débouchés).
+- **`src/data/departments.js`** — les 7 entités (description, cours, compétences, débouchés).
 - **`src/data/images.js`** — toutes les photos du site. Les photos actuelles sont des illustrations libres de droits (Unsplash) à remplacer : déposez vos photos dans `public/images/` puis remplacez l'URL par `` `${base}images/ma-photo.jpg` ``.
 - Les textes des pages se trouvent dans `src/views/`.
 
-> ⚠️ Les informations marquées « À VÉRIFIER » dans les fichiers sont des valeurs indicatives.
+> Les informations marquées « À VÉRIFIER » dans les fichiers sont des valeurs indicatives.
 
 ## Publier une actualité
 

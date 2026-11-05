@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { articles, CATEGORIES, upcomingEvents, formatDate } from '../lib/news'
 import NewsCard from '../components/NewsCard.vue'
+import AppIcon from '../components/AppIcon.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -94,7 +95,7 @@ const usedCategories = computed(() => CATEGORIES.filter((c) => articles.some((a)
         <RouterLink v-for="e in events" :key="e.slug" :to="`/actualites/${e.slug}`" class="card event" v-reveal>
           <span class="event-date">{{ formatDate(e.eventDate) }}</span>
           <h3>{{ e.title }}</h3>
-          <span v-if="e.location" class="muted small">📍 {{ e.location }}</span>
+          <span v-if="e.location" class="muted small loc"><AppIcon name="map-pin" :size="14" /> {{ e.location }}</span>
         </RouterLink>
       </div>
       <p v-else class="muted">Aucun événement à venir pour le moment.</p>
@@ -203,6 +204,11 @@ const usedCategories = computed(() => CATEGORIES.filter((c) => articles.some((a)
   font-size: 14px;
   font-weight: 600;
   color: var(--haiti-red);
+}
+.loc {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 .event h3 {
   font-size: 20px;
