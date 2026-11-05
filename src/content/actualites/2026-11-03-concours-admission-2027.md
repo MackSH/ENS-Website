@@ -2,7 +2,7 @@
 titre: Concours d'admission — ouverture des inscriptions
 date: 2026-11-03
 categorie: Admission
-resume: Les inscriptions au concours d'entrée à l'ENS se font en ligne sur le portail d'admission de l'UEH. 25 candidats seront admis.
+resume: Les inscriptions au concours d'entrée à l'ENS se font en ligne sur le portail d'admission de l'UEH. 25 candidats seront admis dans chaque entité.
 image: graduation
 epingle: true
 evenement: 2027-02-13
@@ -18,7 +18,7 @@ L'inscription se fait **uniquement en ligne**, sur le portail d'admission de l'U
 
 ## Places disponibles
 
-À l'issue du concours :
+À l'issue du concours, **dans chacune des 7 entités** :
 
 - **25 candidats** seront admis ;
 - **5 candidats** seront placés sur liste d'attente.

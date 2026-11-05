@@ -28,7 +28,7 @@ import AppIcon from '../components/AppIcon.vue'
         <p>
           La formation dure quatre ans : une année préparatoire pour consolider les notions apprises au secondaire, puis
           trois années de licence (L1, L2, L3). L'admission se fait sur concours, et seuls {{ site.admission.admitted }}
-          candidats sont retenus à chaque concours.
+          candidats sont retenus par entité à chaque concours.
         </p>
         <p>
           L'ENS forme des professionnels de chaque discipline. Ses diplômés travaillent dans l'administration publique,

@@ -56,7 +56,7 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
       <div class="tile-text">
         <p class="eyebrow on-dark">Admission</p>
         <h2 class="headline-md">Devenez normalien.</h2>
-        <p class="tile-lead">Admission sur concours, inscription en ligne : {{ site.admission.admitted }} places chaque année.</p>
+        <p class="tile-lead">Admission sur concours, inscription en ligne : {{ site.admission.admitted }} places par entité.</p>
         <span class="link-arrow">Comment postuler</span>
       </div>
       <img :src="images.graduation" alt="Des diplômés lancent leur toque" class="tile-img" loading="lazy" />

@@ -12,7 +12,7 @@ const steps = [
   { icon: 'compass', title: 'Choisissez votre entité', text: 'Comparez les 7 entités et leurs débouchés pour choisir le domaine qui correspond à votre projet.' },
   { icon: 'monitor', title: 'Inscrivez-vous en ligne', text: `L'inscription au concours se fait sur le portail d'admission de l'UEH : ${urlLabel}.` },
   { icon: 'file-text', title: 'Passez le concours', text: 'Les candidats passent les épreuves du concours d’admission de l’ENS.' },
-  { icon: 'user-check', title: 'Consultez les résultats', text: `${admitted} candidats sont admis et ${waitlist} sont placés sur liste d'attente. Les résultats sont publiés dans les Actualités.` },
+  { icon: 'user-check', title: 'Consultez les résultats', text: `Dans chaque entité, ${admitted} candidats sont admis et ${waitlist} sont placés sur liste d'attente. Les résultats sont publiés dans les Actualités.` },
 ]
 
 // Calendrier indicatif — À VÉRIFIER.
@@ -34,7 +34,7 @@ const life = [
 
 const faq = [
   { q: 'Comment s’inscrire au concours ?', a: `L’inscription se fait en ligne sur le portail d’admission de l’Université d’État d’Haïti : ${url}. Les dates d’inscription et du concours sont annoncées dans la rubrique Actualités.` },
-  { q: 'Combien de candidats sont admis ?', a: `À l’issue du concours, ${admitted} candidats sont admis et ${waitlist} sont placés sur liste d’attente. Les candidats sur liste d’attente peuvent être appelés si des places se libèrent.` },
+  { q: 'Combien de candidats sont admis ?', a: `Dans chacune des 7 entités, ${admitted} candidats sont admis et ${waitlist} sont placés sur liste d’attente. Les candidats sur liste d’attente peuvent être appelés si des places se libèrent.` },
   { q: 'Qui peut se présenter au concours ?', a: 'Toute personne titulaire du diplôme de fin d’études secondaires (Bac II / Philo) ou d’un diplôme équivalent reconnu par le Ministère de l’Éducation nationale.' },
   { q: 'Combien de temps dure la formation ?', a: 'Quatre ans : une année préparatoire, qui consolide les notions apprises au secondaire, puis trois années de licence (L1, L2, L3).' },
   { q: 'Faut-il vouloir devenir professeur pour entrer à l’ENS ?', a: 'Non. L’ENS forme des professionnels dans chacune de ses disciplines. L’enseignement est un débouché parmi d’autres : administration, ONG, entreprises, recherche, médias, organisations internationales… Consultez la page Débouchés.' },
@@ -64,11 +64,11 @@ const openFaq = ref(0)
         </div>
         <div>
           <strong>{{ admitted }}</strong>
-          <span>Candidats admis</span>
+          <span>Admis par entité</span>
         </div>
         <div>
           <strong>{{ waitlist }}</strong>
-          <span>Sur liste d'attente</span>
+          <span>En liste d'attente par entité</span>
         </div>
         <div>
           <strong>4 ans</strong>

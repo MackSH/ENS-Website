@@ -23,8 +23,8 @@ export const site = {
   // Admission
   admission: {
     url: 'https://admission.ueh.edu.ht/',
-    admitted: 25,
-    waitlist: 5,
+    admitted: 25, // par entité
+    waitlist: 5, // par entité
   },
 
   // Formation : 1 année préparatoire + 3 années de licence
@@ -54,7 +54,7 @@ export const site = {
   stats: [
     { value: '7', label: 'Entités de formation' },
     { value: '4 ans', label: '1 année préparatoire + licence' },
-    { value: '25', label: 'Admis par concours' },
+    { value: '25', label: 'Admis par entité' },
     { value: '250+', label: 'Membres de la communauté' },
   ],
 

@@ -94,7 +94,7 @@ watchEffect(() => {
       <div class="container center">
         <h2 class="headline-lg" v-reveal>Rejoindre l'entité {{ d.name }}.</h2>
         <p class="lead adm" v-reveal="60">
-          L'admission se fait sur concours. À l'issue du concours, {{ site.admission.admitted }} candidats sont admis et
+          L'admission se fait sur concours. Pour l'entité {{ d.name }}, {{ site.admission.admitted }} candidats sont admis et
           {{ site.admission.waitlist }} sont placés sur liste d'attente.
         </p>
         <div class="cta-row" v-reveal="120">
