@@ -104,7 +104,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll))
   width: 30px;
   height: 22px;
   border-radius: 6px;
-  background: var(--text);
+  background: var(--accent);
   color: #fff;
   font-size: 10px;
   font-weight: 700;

@@ -211,7 +211,7 @@ watchEffect(() => {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
   margin-bottom: 16px;
 }

@@ -65,7 +65,7 @@ const total = computed(() => props.department.exam.reduce((n, e) => n + e.coef, 
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
 }
 h3 {
@@ -111,7 +111,7 @@ td {
   color: #fff;
 }
 .coef[data-c='2'] {
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
 }
 tfoot td {
@@ -125,7 +125,7 @@ tfoot td {
   box-shadow: none;
 }
 .dark .ic {
-  background: rgba(41, 151, 255, 0.15);
+  background: var(--accent-dark-soft);
   color: var(--link-on-dark);
 }
 .dark td {
@@ -135,7 +135,7 @@ tfoot td {
   background: #333336;
 }
 .dark .coef[data-c='2'] {
-  background: rgba(41, 151, 255, 0.18);
+  background: var(--accent-dark-soft);
   color: var(--link-on-dark);
 }
 .dark .coef[data-c='3'] {

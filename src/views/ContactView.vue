@@ -90,7 +90,7 @@ const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(site.contact.
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
 }
 .info h2 {

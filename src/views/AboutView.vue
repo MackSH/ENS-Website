@@ -158,7 +158,7 @@ import AppIcon from '../components/AppIcon.vue'
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
 }
 .on-dark {

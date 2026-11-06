@@ -141,7 +141,7 @@ const current = computed(() => departments.find((d) => d.slug === active.value))
   width: 52px;
   height: 52px;
   border-radius: 14px;
-  background: #e8f0fe;
+  background: var(--accent-soft);
   color: var(--accent);
   margin-bottom: 16px;
 }

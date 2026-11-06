@@ -203,7 +203,7 @@ const usedCategories = computed(() => CATEGORIES.filter((c) => articles.some((a)
 .event-date {
   font-size: 14px;
   font-weight: 600;
-  color: var(--haiti-red);
+  color: var(--accent);
 }
 .loc {
   display: inline-flex;

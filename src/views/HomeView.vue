@@ -506,7 +506,7 @@ const month = (d) => d.toLocaleDateString('fr-FR', { month: 'short' }).replace('
   box-shadow: inset 0 0 0 1px var(--hairline);
 }
 .cal-m {
-  background: var(--haiti-red);
+  background: var(--accent);
   color: #fff;
   font-size: 11px;
   font-weight: 600;
